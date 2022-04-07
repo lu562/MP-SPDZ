@@ -1,5 +1,4 @@
-k_sqrt = 10
-t = 15
+k_sqrt = 1000
 
 M = Matrix(k_sqrt, k_sqrt, sint)
 M.assign_all(1)
@@ -7,7 +6,4 @@ N = Matrix(k_sqrt, k_sqrt, sint)
 N.assign_all(1)
 
 
-
-@for_range_opt_multithread(30,t * k_sqrt)
-def _(round):
-    res = M * N
+X = M.dot(N, n_threads=32)
