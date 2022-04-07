@@ -6,4 +6,4 @@ N = Matrix(k_sqrt, k_sqrt, sint)
 N.assign_all(1)
 
 
-X = M.dot(N, n_threads=5)
+X = M.dot(N, n_threads=32)
