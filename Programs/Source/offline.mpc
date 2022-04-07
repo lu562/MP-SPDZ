@@ -1,4 +1,4 @@
-k_sqrt = 7000
+k_sqrt = 10000
 
 M = Matrix(k_sqrt, k_sqrt, sint)
 M.assign_all(1)
