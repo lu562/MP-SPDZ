@@ -1,0 +1,27 @@
+k = 1000
+
+a = Array(k, sint)
+b = Array(k, sint)
+
+
+c = Array(k, sint)
+
+for_range(k)
+def f(i):
+    a[i] = sint(2)
+    b[i] = sint(2)
+
+# M = Matrix(k, k, sint)
+# # N = Matrix(k, k, sint)
+# @for_range(k)
+# def _(i):
+#     @for_range(k)
+#     def _(j):
+#         M[i][j] = sint(1)
+#         # N[i][j] = sint(2)
+
+@for_range_opt_multithread(32, k)
+def _(i):
+    c[i] = sint.dot_product(a, b)
+
+c_plain = c.reveal()
