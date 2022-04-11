@@ -17,4 +17,3 @@ def _(i):
 
 c_plain = c.reveal()
 
-res = second.reveal()
