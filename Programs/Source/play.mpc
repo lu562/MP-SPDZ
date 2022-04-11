@@ -1,4 +1,4 @@
-k = 10
+k = 1000
 
 a = Array(k, sint)
 b = Array(k, sint)
