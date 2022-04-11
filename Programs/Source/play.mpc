@@ -1,36 +1,20 @@
-k = 90000
-k_sqrt = 300
-t = 15
+k = 1000
 
-M = Matrix(k_sqrt, k_sqrt, sint)
-M.assign_all(2)
+a = Array(k, sint)
+b = Array(k, sint)
 
-first = Array(k, sint)
-second = Array(k, sint)
 
-@for_range(k)
+c = Array(k, sint)
+
+for_range(k)
+def f(i):
+    a[i] = sint(2)
+    b[i] = sint(2)
+
+@for_range_opt_multithread(32, k)
 def _(i):
-    first[i] = sint(i)
+    c[i] = sint.dot_product(a, b)
 
-
-@for_range_opt(t)
-def _(round):
-    if (round % 2 == 0):
-        @for_range_opt_multithread(30, k)
-        def _(i):
-            first[i] = sint.dot_product(first.get_range((i // k_sqrt) * k_sqrt, k_sqrt), M[i % k_sqrt])
-
-        # do the butterfly-style allocation to get input for next round.
-        @for_range_opt_multithread(30, k)
-        def _(i):  
-            second[(i % k_sqrt) * k_sqrt + (i // k_sqrt)] = first[i]      
-    if (round % 2 == 1):
-        @for_range_opt_multithread(30, k)
-        def _(i):
-            second[i] = sint.dot_product(second.get_range((i // k_sqrt) * k_sqrt, k_sqrt), M[i % k_sqrt])
-        # do the butterfly-style allocation to get input for next round.
-        @for_range_opt_multithread(30, k)
-        def _(i):  
-            first[(i % k_sqrt) * k_sqrt + (i // k_sqrt)] = second[i]
+c_plain = c.reveal()
 
 res = second.reveal()
