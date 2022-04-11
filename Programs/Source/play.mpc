@@ -16,7 +16,7 @@ def _(i):
 @for_range_opt(t)
 def _(round):
     if (round % 2 == 0):
-        @for_range_opt_multithread(30, k)
+        @for_range_opt_multithread(32, k)
         def _(i):
             first[i] = sint.dot_product(first.get_range((i // k_sqrt) * k_sqrt, k_sqrt), M[i % k_sqrt])
 
@@ -25,11 +25,11 @@ def _(round):
         def _(i):  
             second[(i % k_sqrt) * k_sqrt + (i // k_sqrt)] = first[i]      
     if (round % 2 == 1):
-        @for_range_opt_multithread(30, k)
+        @for_range_opt_multithread(32, k)
         def _(i):
             second[i] = sint.dot_product(second.get_range((i // k_sqrt) * k_sqrt, k_sqrt), M[i % k_sqrt])
         # do the butterfly-style allocation to get input for next round.
-        @for_range_opt_multithread(30, k)
+        @for_range_opt_multithread(32, k)
         def _(i):  
             first[(i % k_sqrt) * k_sqrt + (i // k_sqrt)] = second[i]
 
