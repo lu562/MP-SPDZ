@@ -1,4 +1,4 @@
-k = 7000
+k = 10000
 
 a = sint.Array(k)
 b = sint.Array(k)
