@@ -1848,7 +1848,8 @@ def sint_cint_division(a, b, k, f, kappa):
     return (sign_a * sign_b) * A
 
 def IntDiv(a, b, k, kappa=None):
-    return FPDiv(a.extend(2 * k) << k, b.extend(2 * k) << k, 2 * k, k,
+    l = 2 * k + 1
+    return FPDiv(a.extend(l) << k, b.extend(l) << k, l, k,
                  kappa, nearest=True)
 
 @instructions_base.ret_cisc
@@ -1875,19 +1876,20 @@ def FPDiv(a, b, k, f, kappa, simplex_flag=False, nearest=False):
     x = alpha - b.extend(2 * k) * w
     base.reset_global_vector_size()
 
-    y = a.extend(2 *k) * w
-    y = y.round(2*k, f, kappa, nearest, signed=True)
+    l_y = k + 3 * f - res_f
+    y = a.extend(l_y) * w
+    y = y.round(l_y, f, kappa, nearest, signed=True)
 
     for i in range(theta - 1):
         x = x.extend(2 * k)
-        y = y.extend(2 * k) * (alpha + x).extend(2 * k)
+        y = y.extend(l_y) * (alpha + x).extend(l_y)
         x = x * x
-        y = y.round(2*k, 2*f, kappa, nearest, signed=True)
+        y = y.round(l_y, 2*f, kappa, nearest, signed=True)
         x = x.round(2*k, 2*f, kappa, nearest, signed=True)
 
     x = x.extend(2 * k)
-    y = y.extend(2 * k) * (alpha + x).extend(2 * k)
-    y = y.round(k + 3 * f - res_f, 3 * f - res_f, kappa, nearest, signed=True)
+    y = y.extend(l_y) * (alpha + x).extend(l_y)
+    y = y.round(l_y, 3 * f - res_f, kappa, nearest, signed=True)
     return y
 
 def AppRcr(b, k, f, kappa=None, simplex_flag=False, nearest=False):
