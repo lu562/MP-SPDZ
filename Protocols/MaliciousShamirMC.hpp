@@ -25,7 +25,7 @@ using namespace std;
 
 map <pair<int, ZZ>, mat_ZZ_p> _fft_van_matrices;
 ZZ _fft_van_modulus;
-mutex _interp_mutex;
+// mutex _interp_mutex;
 
 
 void set_vm_matrix(mat_ZZ_p &result, vec_ZZ_p &x_list, int d)
@@ -59,7 +59,7 @@ void _set_fft_vandermonde_matrix(ZZ_p omega, int n)
 
 mat_ZZ_p& get_fft_vandermonde_matrix(ZZ_p omega, int n)
 {
-    lock_guard<mutex> lock(_interp_mutex);
+//     lock_guard<mutex> lock(_interp_mutex);
     if (ZZ_p::modulus() != _fft_van_modulus) {
         _fft_van_modulus = ZZ_p::modulus();
         _fft_van_matrices.clear();
