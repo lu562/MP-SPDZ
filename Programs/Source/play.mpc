@@ -1,5 +1,5 @@
-k = 160000
-k_sqrt = 400
+k = 10000
+k_sqrt = 100
 t = 15
 
 M = Matrix(k_sqrt, k_sqrt, sint)
@@ -59,5 +59,45 @@ def _(round):
         @for_range_opt_multithread(30, k)
         def _(i):  
             first[(i % k_sqrt) * k_sqrt + (i // k_sqrt)] = second[i]
+
+
+@for_range_opt(t)
+def _(round):
+    if (round % 2 == 0):
+        x_plus_r = first + R
+        x_plus_r_plain.assign(x_plus_r.reveal())
+        @for_range_opt_multithread(30, k)
+        def _(i):
+            temp = sint(0)
+            x_plus_r_plain_piece = Array(k_sqrt, cint)
+            res_product = Array(k_sqrt, sint)
+            x_plus_r_plain_piece.assign(x_plus_r_plain.get_range((i // k_sqrt) * k_sqrt, k_sqrt))
+            res_product.assign(x_plus_r_plain_piece * M[i % k_sqrt])
+            temp = sum(res_product)
+            first[i] = temp - MR[i % k_sqrt]
+
+        # do the butterfly-style allocation to get input for next round.
+        @for_range_opt_multithread(30, k)
+        def _(i):  
+            second[(i % k_sqrt) * k_sqrt + (i // k_sqrt)] = first[i]      
+    if (round % 2 == 1):
+        x_plus_r = second + R
+        x_plus_r_plain.assign(x_plus_r.reveal())
+
+        @for_range_opt_multithread(30, k)
+        def _(i):
+            temp = sint(0)
+            x_plus_r_plain_piece = Array(k_sqrt, cint)
+            res_product = Array(k_sqrt, sint)
+            x_plus_r_plain_piece.assign(x_plus_r_plain.get_range((i // k_sqrt) * k_sqrt, k_sqrt))
+            res_product.assign(x_plus_r_plain_piece * M[i % k_sqrt])
+            temp = sum(res_product)
+            second[i] = temp - MR[i % k_sqrt]
+
+        # do the butterfly-style allocation to get input for next round.
+        @for_range_opt_multithread(30, k)
+        def _(i):  
+            first[(i % k_sqrt) * k_sqrt + (i // k_sqrt)] = second[i]
+
 
 res = second.reveal()
