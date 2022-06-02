@@ -458,63 +458,13 @@ typename T::open_type MaliciousShamirMC<T>::finalize_open()
     return reconstruct(shares);
 }
 
-// template<class T>
-// typename T::open_type MaliciousShamirMC<T>::reconstruct(
-//         const vector<open_type>& shares)
-// {
-//     int threshold = ShamirMachine::s().threshold;
-//     std::cout << "I'm here!" << std::endl;
-//     typename T::open_type value = 0;
-//     for (int j = 0; j < threshold + 1; j++)
-//         value += shares[j] * reconstructions[threshold + 1][j];
-//     for (size_t j = threshold + 2; j <= shares.size(); j++)
-//     {
-//         typename T::open_type check = 0;
-//         for (size_t k = 0; k < j; k++)
-//             check += shares[k] * reconstructions[j][k];
-//         if (check != value)
-//             throw mac_fail("inconsistent Shamir secret sharing");
-//     }
-//     return value;
-// }
-
 template<class T>
 typename T::open_type MaliciousShamirMC<T>::reconstruct(
         const vector<open_type>& shares)
 {
     int threshold = ShamirMachine::s().threshold;
-    int nparties = ShamirMachine::s().nparties;
-    typename T::open_type value = 0, robust_value;
-
-    bigint test, test2;
-
-    // to_bigint(test, shares[0]);
-    // shares[0].get().to_bigint(test, shares[0].get_ZpD());
-
-    // std::cout << "I'm here! "  << test << std::endl;
-
-    vec_ZZ_p x_vec, y_vec, res_vec, err_vec;
-    x_vec.SetLength(shares.size());
-    y_vec.SetLength(shares.size());
-
-    for (size_t j = 0; j < shares.size(); j++)
-    {
-        x_vec[j] = ZZ_p((j+1+this->my_id) % nparties);
-        to_bigint(test, shares[j]);
-        y_vec[j] = to_ZZ_p(conv<ZZ>(to_string(test).c_str()));
-        // std::cout << "I'm here! "  << y_vec[j] << std::endl;
-    }
-    bool success = gao_interpolate(res_vec, err_vec, x_vec, y_vec, threshold, nparties);
-    if (success == 0) {
-        throw mac_fail("robust reconstruction failed");
-    }
-    ostringstream oss;
-    oss << res_vec[0];
-    test2 = bigint(oss.str());
-    robust_value = open_type(test2);
-    // std::cout << "result is" << success << " value: "<< robust_value << " test2: " << test2 << endl;
-    return robust_value;
-
+    std::cout << "I'm here!" << std::endl;
+    typename T::open_type value = 0;
     for (int j = 0; j < threshold + 1; j++)
         value += shares[j] * reconstructions[threshold + 1][j];
     for (size_t j = threshold + 2; j <= shares.size(); j++)
@@ -527,3 +477,53 @@ typename T::open_type MaliciousShamirMC<T>::reconstruct(
     }
     return value;
 }
+
+// template<class T>
+// typename T::open_type MaliciousShamirMC<T>::reconstruct(
+//         const vector<open_type>& shares)
+// {
+//     int threshold = ShamirMachine::s().threshold;
+//     int nparties = ShamirMachine::s().nparties;
+//     typename T::open_type value = 0, robust_value;
+
+//     bigint test, test2;
+
+//     // to_bigint(test, shares[0]);
+//     // shares[0].get().to_bigint(test, shares[0].get_ZpD());
+
+//     // std::cout << "I'm here! "  << test << std::endl;
+
+//     vec_ZZ_p x_vec, y_vec, res_vec, err_vec;
+//     x_vec.SetLength(shares.size());
+//     y_vec.SetLength(shares.size());
+
+//     for (size_t j = 0; j < shares.size(); j++)
+//     {
+//         x_vec[j] = ZZ_p((j+1+this->my_id) % nparties);
+//         to_bigint(test, shares[j]);
+//         y_vec[j] = to_ZZ_p(conv<ZZ>(to_string(test).c_str()));
+//         // std::cout << "I'm here! "  << y_vec[j] << std::endl;
+//     }
+//     bool success = gao_interpolate(res_vec, err_vec, x_vec, y_vec, threshold, nparties);
+//     if (success == 0) {
+//         throw mac_fail("robust reconstruction failed");
+//     }
+//     ostringstream oss;
+//     oss << res_vec[0];
+//     test2 = bigint(oss.str());
+//     robust_value = open_type(test2);
+//     // std::cout << "result is" << success << " value: "<< robust_value << " test2: " << test2 << endl;
+//     return robust_value;
+
+//     for (int j = 0; j < threshold + 1; j++)
+//         value += shares[j] * reconstructions[threshold + 1][j];
+//     for (size_t j = threshold + 2; j <= shares.size(); j++)
+//     {
+//         typename T::open_type check = 0;
+//         for (size_t k = 0; k < j; k++)
+//             check += shares[k] * reconstructions[j][k];
+//         if (check != value)
+//             throw mac_fail("inconsistent Shamir secret sharing");
+//     }
+//     return value;
+// }
