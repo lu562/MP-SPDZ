@@ -1,5 +1,5 @@
-k = 90000
-k_sqrt = 300
+k = 160000
+k_sqrt = 400
 t = 15
 
 M = Matrix(k_sqrt, k_sqrt, sint)
