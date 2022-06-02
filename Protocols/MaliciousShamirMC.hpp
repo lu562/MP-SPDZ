@@ -463,7 +463,6 @@ typename T::open_type MaliciousShamirMC<T>::reconstruct(
         const vector<open_type>& shares)
 {
     int threshold = ShamirMachine::s().threshold;
-    std::cout << "I'm here!" << std::endl;
     typename T::open_type value = 0;
     for (int j = 0; j < threshold + 1; j++)
         value += shares[j] * reconstructions[threshold + 1][j];
