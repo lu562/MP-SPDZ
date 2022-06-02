@@ -116,6 +116,7 @@ protected:
   gf2n_() : a(0)       {}
   gf2n_(U a) : a(a & mask) {}
   gf2n_(long a) : gf2n_(U(a)) {}
+  gf2n_(bigint& a) {(void)a;}
   gf2n_(int a) : gf2n_(U(unsigned(a))) {}
   template<class T>
   gf2n_(IntBase<T> a) : a(a.get()) {}
@@ -147,7 +148,6 @@ protected:
   gf2n_ operator-(const gf2n_& x) const { gf2n_ res; res.add(*this, x); return res; }
   gf2n_& operator-=(const gf2n_& x) { sub(*this, x); return *this; }
   gf2n_ operator/(const gf2n_& x) const { return *this * x.invert(); }
-
   gf2n_ operator*(const Bit& x) const;
   gf2n_ operator*(int x) const { return *this * gf2n_(x); }
 
@@ -190,13 +190,14 @@ protected:
       return s;
     }
 
-
   // Pack and unpack in native format
   //   i.e. Dont care about conversion to human readable form
   void pack(octetStream& o, int n = -1) const
     { (void) n; o.append((octet*) &a,sizeof(U)); }
   void unpack(octetStream& o, int n = -1)
     { (void) n; o.consume((octet*) &a,sizeof(U)); }
+
+  void to(bigint& res) const { res = 0;}
 };
 
 class gf2n_short : public gf2n_<word>
@@ -220,11 +221,13 @@ public:
   static gf2n_short cut(int128 x);
 
   gf2n_short() {}
+  gf2n_short(bigint& a) {(void)a;}
   template<class T>
   gf2n_short(const T& other) : super(other) {}
   gf2n_short(const int128& a);
 
   word get_word() const { return a; }
+  void to(bigint& res) const { res = 0;}
 };
 
 #include "gf2nlong.h"

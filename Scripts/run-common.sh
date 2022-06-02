@@ -34,7 +34,7 @@ run_player() {
     if ! test -e $SPDZROOT/logs; then
         mkdir $SPDZROOT/logs
     fi
-    params="$prog $* -pn $port -h localhost"
+    params="$prog $* -pn $port -h localhost -P 304965283352184400401410545793169118303"
     if $SPDZROOT/$bin 2>&1 | grep -q '^-N,'; then
        params="$params -N $players"
     fi

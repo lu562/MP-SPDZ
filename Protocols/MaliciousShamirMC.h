@@ -22,6 +22,7 @@ class MaliciousShamirMC : public ShamirMC<T>
 
     void finalize(vector<typename T::open_type>& values, const vector<T>& S,
             const Player& P);
+    int my_id;
 
 public:
     MaliciousShamirMC();
