@@ -1,0 +1,20 @@
+
+
+
+k = 1000
+t = 1
+M = Matrix(k, k, sint)
+M.assign_all(1)
+N = Matrix(k, k, sint)
+N.assign_all(1)
+s = cint(0)
+
+res = M.dot(N, n_threads=32)
+
+@for_range_opt(2 * k * (t + 1))
+def f(i):
+
+    @for_range_opt(k)
+    def f(i):
+        s = M[0][i]
+    s_open = s.reveal()
