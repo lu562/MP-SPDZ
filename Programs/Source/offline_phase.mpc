@@ -1,7 +1,7 @@
 
 
 
-k = 1000
+k = 3000
 t = 1
 M = Matrix(k, k, sint)
 M.assign_all(1)
