@@ -7,7 +7,7 @@ apt-get install automake build-essential git libboost-dev libboost-thread-dev li
 Scripts/tldr.sh
 make -j 8 tldr
 ```
-b) compile the malicious-shamir MPC backend.
+b) compile the malicious-shamir MPC backend. This backend is used for benchmark.
 ```
 make -j8 malicious-shamir-party.x
 ```
