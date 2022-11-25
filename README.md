@@ -21,6 +21,8 @@ d) To run a local test with 3 MPC parties, simply use the script:
 Scripts/mal-shamir.sh play
 ```
 
+e) to run distributed experiments, please follow the instructions in MP-SPDZ repo about how to run programs on multiple machines.
+
 
 
 # Multi-Protocol SPDZ [![Documentation Status](https://readthedocs.org/projects/mp-spdz/badge/?version=latest)](https://mp-spdz.readthedocs.io/en/latest/?badge=latest) [![Build Status](https://dev.azure.com/data61/MP-SPDZ/_apis/build/status/data61.MP-SPDZ?branchName=master)](https://dev.azure.com/data61/MP-SPDZ/_build/latest?definitionId=7&branchName=master) [![Gitter](https://badges.gitter.im/MP-SPDZ/community.svg)](https://gitter.im/MP-SPDZ/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
