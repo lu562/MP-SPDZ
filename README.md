@@ -1,7 +1,7 @@
 # This is a repo forked from MP-SPDZ, and this repo contains implementations of the protocols in "RPM: Robust Anonymity at Scale" (https://eprint.iacr.org/2022/1037.pdf). To run the protocols locally, please follow the following instructions:
 
-(1) setup MP-SPDZ:
-a) install all requirements (please follow the instructions in origin repo for OS specific requirements), and set up certificates and keys.
+
+a) setup MP-SPDZ: install all requirements (please follow the instructions in origin repo for OS specific requirements), and set up certificates and keys.
 ```
 apt-get install automake build-essential git libboost-dev libboost-thread-dev libntl-dev libsodium-dev libssl-dev libtool m4 python3 texinfo yasm
 Scripts/tldr.sh
