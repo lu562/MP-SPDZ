@@ -22,9 +22,9 @@ d) To run a local test with 3 MPC parties, simply use the script:
 Scripts/mal-shamir.sh play
 ```
 
-e) to run distributed experiments, please follow the instructions in MP-SPDZ repo about how to run programs on multiple machines. (please make sure the certificates are consistent among all machines.)
+e) (Optional) To run distributed experiments, please follow the instructions in MP-SPDZ repo about how to run programs on multiple machines. (please make sure the certificates are consistent among all machines.)
 
-f) to run the robust version of our protocols, please go to (https://github.com/lu562/MP-SPDZ/blob/master/Protocols/MaliciousShamirMC.hpp#L461), and replace this function with (https://github.com/lu562/MP-SPDZ/blob/master/Protocols/MaliciousShamirMC.hpp#L480). After the replacement, you should re-compile malicious-shamir MPC backend. Besides, robust MPC backend requires n >= 3t + 1, so at least 4 parties are needed to launch the test, you should modify script "Scripts/mal-shamir.sh" to launch 4 parties or do it manually. 
+f) (Optional) To run the robust version of our protocols, please go to (https://github.com/lu562/MP-SPDZ/blob/master/Protocols/MaliciousShamirMC.hpp#L461), and replace this function with (https://github.com/lu562/MP-SPDZ/blob/master/Protocols/MaliciousShamirMC.hpp#L480). After the replacement, you should re-compile malicious-shamir MPC backend. Besides, robust MPC backend requires n >= 3t + 1, so at least 4 parties are needed to launch the test, you should modify script "Scripts/mal-shamir.sh" to launch 4 parties or do it manually. 
 
 
 
