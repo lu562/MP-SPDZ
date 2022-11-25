@@ -1,19 +1,20 @@
 # This is a repo forked from MP-SPDZ, and this repo contains implementations of the protocols in "RPM: Robust Anonymity at Scale" (https://eprint.iacr.org/2022/1037.pdf). To run the protocols locally, please follow the following instructions:
 
 (1) setup MP-SPDZ:
-a) install all requirements. (please follow the instructions in origin repo for OS specific requirements)
+a) install all requirements (please follow the instructions in origin repo for OS specific requirements), and set up certificates and keys.
 ```
 apt-get install automake build-essential git libboost-dev libboost-thread-dev libntl-dev libsodium-dev libssl-dev libtool m4 python3 texinfo yasm
 Scripts/tldr.sh
 make -j 8 tldr
+Scripts/setup-ssl.sh 3
 ```
 b) compile the malicious-shamir MPC backend. This backend is used for benchmark.
 ```
 make -j8 malicious-shamir-party.x
 ```
-c) compile the source code. for example, the third variant of RPM is implemented in "Programs/Source/play.mpc", you can modify the parameter k and k_sqrt at the beginning to change the number of inputs, default to be k=10000.
+c) compile the source code. for example, the third variant of RPM is implemented in "Programs/Source/play.mpc", you can modify the parameter k and k_sqrt at the beginning to change the number of inputs.
 ```
-./compile.py -F 128 play
+./compile.py -F 128 -l play
 ```
 
 d) To run a local test with 3 MPC parties, simply use the script:
@@ -21,7 +22,8 @@ d) To run a local test with 3 MPC parties, simply use the script:
 Scripts/mal-shamir.sh play
 ```
 
-e) to run distributed experiments, please follow the instructions in MP-SPDZ repo about how to run programs on multiple machines.
+e) to run distributed experiments, please follow the instructions in MP-SPDZ repo about how to run programs on multiple machines. (please make sure the )
+f) to run the robust version of our protocols, please go to (https://github.com/lu562/MP-SPDZ/blob/master/Protocols/MaliciousShamirMC.hpp#L461), and replace this function with (https://github.com/lu562/MP-SPDZ/blob/master/Protocols/MaliciousShamirMC.hpp#L480). After the replacement, you should re-compile malicious-shamir MPC backend. Besides, robust MPC backend requires n >= 3t + 1, so at least 4 parties are needed to launch the test, you should modify script "Scripts/mal-shamir.sh" to launch 4 parties or do it manually. 
 
 
 
