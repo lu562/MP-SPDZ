@@ -1,4 +1,6 @@
-# This is a repo forked from MP-SPDZ, and this repo contains implementations of the protocols in "RPM: Robust Anonymity at Scale" (https://eprint.iacr.org/2022/1037.pdf). To run the protocols locally, please follow the following instructions:
+# RPM: Robust Anonymity at Scale
+
+This is a repo forked from MP-SPDZ, and this repo contains implementations of the protocols in "RPM: Robust Anonymity at Scale" (https://eprint.iacr.org/2022/1037.pdf). To run the protocols locally, please follow the following instructions:
 
 
 a) setup MP-SPDZ: install all requirements (please follow the instructions in origin repo for OS specific requirements), and set up certificates and keys.
@@ -26,7 +28,7 @@ e) (Optional) To run distributed experiments, please follow the instructions in 
 
 f) (Optional) To run the robust version of our protocols, please go to (https://github.com/lu562/MP-SPDZ/blob/master/Protocols/MaliciousShamirMC.hpp#L461), and replace this function with (https://github.com/lu562/MP-SPDZ/blob/master/Protocols/MaliciousShamirMC.hpp#L480). After the replacement, you should re-compile malicious-shamir MPC backend. Besides, robust MPC backend requires n >= 3t + 1, so at least 4 parties are needed to launch the test, you should modify script "Scripts/mal-shamir.sh" to launch 4 parties or do it manually. 
 
-
+Below is the Readme of the original MP-SPDZ framework, we recommend users to follow this introduction if encountering any problems when setting up MP-SPDZ.
 
 # Multi-Protocol SPDZ [![Documentation Status](https://readthedocs.org/projects/mp-spdz/badge/?version=latest)](https://mp-spdz.readthedocs.io/en/latest/?badge=latest) [![Build Status](https://dev.azure.com/data61/MP-SPDZ/_apis/build/status/data61.MP-SPDZ?branchName=master)](https://dev.azure.com/data61/MP-SPDZ/_build/latest?definitionId=7&branchName=master) [![Gitter](https://badges.gitter.im/MP-SPDZ/community.svg)](https://gitter.im/MP-SPDZ/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
