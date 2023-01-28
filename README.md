@@ -24,7 +24,7 @@ d) To run a local test with 3 MPC parties, simply use the script:
 Scripts/mal-shamir.sh play
 ```
 
-e) (Optional) To run distributed experiments, please follow the instructions in MP-SPDZ repo about how to run programs on multiple machines. (please make sure the certificates are consistent among all machines.) We run our experiments on AWS c5.9xlarge instances, we recommend users to use similar hardwares if you wanna reproduce the numbers in the paper.
+e) (Optional) To run distributed experiments, please follow the instructions in MP-SPDZ repo about how to run programs on multiple machines. (please make sure the certificates are consistent among all machines.) We run our experiments on AWS c5.9xlarge instances, we recommend users to use similar hardwares if you wanna reproduce the numbers in the paper. Besides, the codes are hardcoded to use 32 threads, please make sure you have enough resources if you expect similar performance numbers.
 
 f) (Optional) The instructions above show the steps to run the variant 3. If you want to test variant 1 or variant 2, the corresponding codes are "variant1.mpc" and "variant2.mpc". For Variant 1, we recommend users to use MPC backend "sy-rep-field-party.x" as it supports faster inner product. The steps to compile "sy-rep-field-party.x" backend is similar, just run "make -j8 sy-rep-field-party.x" and use "sy-rep-field-party.x" to run the codes. Scripts are also available. refer to "Honest Majority" section in MP-SPDZ intro.
 
