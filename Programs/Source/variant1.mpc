@@ -1,0 +1,11 @@
+k = 1000
+
+M = Matrix(k, k, sint)
+N = Matrix(k, k, sint)
+M.assign_all(2)
+N.assign_all(0)
+@for_range(k)
+def f(i):
+    N[i] = sint(1)
+
+res = M.dot(N, n_threads=32)
