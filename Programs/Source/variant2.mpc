@@ -1,0 +1,28 @@
+k = 1000
+
+a = Array(k, sint)
+b = Array(k, sint)
+
+r = Array(k, sint)
+br = Array(k, sint)
+c_plain = Array(k, cint)
+@for_range(k)
+def f(i):
+    a[i] = sint(2)
+    b[i] = sint(1)
+    r[i] = sint(5)
+    br[i] = sint(5)
+
+c = a + r
+c_plain.assign(c.reveal())
+d = Array(k, sint)
+f = Array(k, sint)
+
+@for_range_opt_multithread(32, k)
+def _(i):
+    d[i] = sint(0)
+    f = Array(k, sint)
+    f.assign(c_plain * b)
+    d[i] = sum(f)
+    d[i] = d[i] - br[i]
+d_plain = d.reveal()
