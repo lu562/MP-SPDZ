@@ -1,4 +1,4 @@
-# tunnable parameters k_sqrt: square root of k, t: num of layers of permutation network
+# tunable parameters k_sqrt: square root of k, t: num of layers of permutation network
 k_sqrt = 300
 t = 15
 
