@@ -1,4 +1,4 @@
-# tunnable parameters k: num of input
+# tunable parameters k: num of input
 k = 1000
 
 M = Matrix(k, k, sint)
