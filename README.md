@@ -17,8 +17,11 @@ make -j8 malicious-shamir-party.x
 c) compile the source code. for example, the third variant of RPM is implemented in "Programs/Source/play.mpc" (This is the Variant 3 from the paper), you can modify the parameter k and k_sqrt at the beginning to change the number of inputs.
 
 Tunnable parameters for variant 3 online phase:
+
 k: num of inputs
+
 k_sqrt: square root of num of inputs
+
 t: num of layers in permutation network
 
 ```
@@ -35,6 +38,7 @@ e) (Optional) To run distributed experiments, please follow the instructions in 
 f) (Optional) The instructions above show the steps to run the variant 3. If you want to test variant 1 or variant 2, the corresponding codes are "variant1.mpc" and "variant2.mpc". For Variant 1, we recommend users to use MPC backend "sy-rep-field-party.x" as it supports faster inner product. The steps to compile "sy-rep-field-party.x" backend is similar, just run "make -j8 sy-rep-field-party.x" and use "sy-rep-field-party.x" to run the codes. Scripts are also available. refer to "Honest Majority" section in MP-SPDZ intro.
 
 Tunnable parameters for variant 1/2 online phase:
+
 k: num of inputs
 
 
@@ -52,6 +56,7 @@ Scripts/mal-shamir.sh offline_3.mpc
 Tunnable parameters for variant 3 offline phase:
 
 k_sqrt: square root of num of inputs
+
 t: num of layers in permutation network
 
 Below is the Readme of the original MP-SPDZ framework, we recommend users to follow this introduction if encountering any problems when setting up MP-SPDZ.
