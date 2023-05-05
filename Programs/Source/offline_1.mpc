@@ -1,8 +1,9 @@
-k_sqrt = 1000
+# tunnable parameters k: num of input
+k = 1000
 
-M = Matrix(k_sqrt, k_sqrt, sint)
+M = Matrix(k, k, sint)
 M.assign_all(1)
-N = Matrix(k_sqrt, k_sqrt, sint)
+N = Matrix(k, k, sint)
 N.assign_all(1)
 
 
