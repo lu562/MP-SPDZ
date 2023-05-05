@@ -46,7 +46,7 @@ g) (Optional) To run the robust version of our protocols, please go to (https://
 
 h) (Optional) The offline phase code for variant 1 is offline_1.mpc, and the offline phase for variant 3 is offline_3.mpc. As the offline phase of variant 2 is almost the same as variant 1, we do not put it here. The way to test them is the same as online phase code.
 
-Below are the example of executing Variant 1 offline phase:
+Below are the example of executing Variant 3 offline phase:
 
 ```
 ./compile.py -F 128 -l offline_3.mpc
