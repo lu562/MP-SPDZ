@@ -1,4 +1,5 @@
-k = 10000
+# tunnable parameters k: num of input, k_sqrt: square root of k, t: num of layers of permutation network
+k = 10000 
 k_sqrt = 100
 t = 15
 
